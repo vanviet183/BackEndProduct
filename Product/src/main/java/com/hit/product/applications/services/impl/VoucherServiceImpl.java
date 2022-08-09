@@ -86,7 +86,6 @@ public class VoucherServiceImpl implements VoucherService {
         Optional<Voucher> voucher = voucherRepository.findById(idVoucher);
         checkVoucherException(voucher);
 
-        voucher.get().setUser(user.get());
         voucherRepository.save(voucher.get());
         return new TrueFalseResponse(true);
     }

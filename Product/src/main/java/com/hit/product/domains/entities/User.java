@@ -75,8 +75,11 @@ public class User extends AbstractAuditingEntity {
             inverseJoinColumns = @JoinColumn(name = "id_role"))
     private List<Role> roles;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JsonIgnore
+    @JoinTable(name = "user_vouchers",
+            joinColumns = @JoinColumn(name = "id_user"),
+            inverseJoinColumns = @JoinColumn(name = "id_voucher"))
     private List<Voucher> vouchers;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")

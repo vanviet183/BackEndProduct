@@ -32,9 +32,8 @@ public class Voucher extends AbstractAuditingEntity {
         this.expirationTime = calculateExpirationDate(EXPIRATION_TIME);
     }
 
-    public Voucher(User user, Double percent) {
+    public Voucher(Double percent) {
         super();
-        this.user = user;
         this.expirationTime = calculateExpirationDate(EXPIRATION_TIME);
     }
 
@@ -44,10 +43,6 @@ public class Voucher extends AbstractAuditingEntity {
         calendar.add(Calendar.HOUR, expirationTime);
         return new Date(calendar.getTime().getTime());
     }
-
-    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_user")
-    private User user;
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_event")
